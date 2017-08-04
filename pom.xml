@@ -97,13 +97,21 @@
         </plugins>
     </build>
 
+    <scm>
+        <connection>https://github.com/mwoodiupui/CAS-Explorer.git</connection>
+        <developerConnection>git@github.com:mwoodiupui/CAS-Explorer.git</developerConnection>
+        <url>https://github.com/mwoodiupui/CAS-Explorer</url>
+    </scm>
+
     <developers>
         <developer>
             <id>mwood</id>
             <name>Mark H. Wood</name>
-            <organization>Indiana University</organization>
             <email>mwood@iupui.edu</email>
+            <url>https://sites.google.com/site/mhwoodmypage/</url>
             <timezone>-5</timezone>
+            <organization>Indiana University</organization>
+            <organizationUrl>https://www.iu.edu/</organizationUrl>
         </developer>
     </developers>
 
