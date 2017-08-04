@@ -19,6 +19,7 @@
     </properties>
 
     <dependencies>
+        <!-- CAS -->
         <dependency>
             <groupId>org.jasig.cas.client</groupId>
             <artifactId>cas-client-core</artifactId>
@@ -31,11 +32,18 @@
             <version>${java.cas.client.version}</version>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- Web tech -->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 
