@@ -10,7 +10,7 @@
     <body>
         <h1>Hello World!</h1>
         <dl>
-            <dt>Principal name</dt><dd>${request.principal.name}</dd>
+            <dt>Principal name</dt><dd>${pageContext.request.userPrincipal.name}</dd>
         </dl>
     </body>
 </html>
