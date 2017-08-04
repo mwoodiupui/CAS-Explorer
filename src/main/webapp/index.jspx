@@ -9,8 +9,6 @@
           xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
-    <jsp:useBean id="utilityBean"
-                 class="edu.iupui.ulib.cas.explorer.UtilityBean"/>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>CAS Explorer</title>
@@ -23,18 +21,42 @@
             <dd><jsp:text>${pageContext.request.userPrincipal.name}</jsp:text></dd>
         </dl>
 
-        <p>
-            <span>Test:  </span>
-            <c:out value='${utilityBean.test}'/>
-        </p>
-
         <h3>Request attributes</h3>
-        <ol>
-            <c:forEach items="${utilityBean.getRequestAttributeNames(pageContext.request)}"
+        <dl>
+            <c:forEach items="${pageContext.request.attributeNames}"
                        var="attributeName">
-                <li><c:out value="${attributeName}"/></li>
+                <dt><c:out value="${attributeName}"/></dt>
+                <dd><c:out value="${pageContext.request.getAttribute(attributeName)}"/></dd>
             </c:forEach>
-        </ol>
+        </dl>
+
+        <h3>Request parameters</h3>
+        <dl>
+            <c:forEach items="${pageContext.request.parameterNames}"
+                       var="paramName">
+                <dt><c:out value="${paramName}"/></dt>
+                <dd><c:out value="${pageContext.request.getParameterValues(name)}"/></dd>
+            </c:forEach>
+        </dl>
+
+        <h3>Cookies</h3>
+        <dl>
+            <c:forEach items="${pageContext.request.getCookies()}"
+                       var="cookie">
+                <dt><c:out value="${cookie.name}"/></dt>
+                <dd><c:out value="${cookie.value}"/></dd>
+            </c:forEach>
+        </dl>
+
+        <h3>Session attributes</h3>
+        <dl>
+            <c:forEach items="${pageContext.session.attributeNames}"
+                       var="attributeName">
+                <dt><c:out value="${attributeName}"/></dt>
+                <dd><c:out value="${pageContext.session.getAttribute(attributeName)}"/></dd>
+            </c:forEach>
+        </dl>
+
     </body>
 
 </jsp:root>
