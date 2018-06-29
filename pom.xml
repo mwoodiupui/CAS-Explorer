@@ -15,9 +15,9 @@
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.cas.client.version>3.5.0</java.cas.client.version>
-        <tomcat.major.version>7</tomcat.major.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <tomcat.major.version>85</tomcat.major.version>
     </properties>
 
     <dependencies>
@@ -26,7 +26,6 @@
             <groupId>org.jasig.cas.client</groupId>
             <artifactId>cas-client-core</artifactId>
             <version>${java.cas.client.version}</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jasig.cas.client</groupId>
@@ -47,6 +46,14 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+
+        <!-- Infrastructure -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -127,5 +134,10 @@
             <organizationUrl>https://www.iu.edu/</organizationUrl>
         </developer>
     </developers>
+
+    <organization>
+        <name>Indiana University</name>
+        <url>https://www.iu.edu/</url>
+    </organization>
 
 </project>
