@@ -1,0 +1,31 @@
+This webapp. is for seeing how CAS clients function.  It's useful for 
+poking around in details that you normally want to ignore, when you want 
+to find out e.g. what attributes are asserted for a given principal.  It 
+gets a service ticket and then vomits out anything it can find inside, 
+plus session and request information.
+
+You'll need to configure the CAS filters for your local server and your 
+CAS service.  One way is through the JNDI environment.  In Tomcat:
+
+<?xml version='1.0' encoding='UTF-8'?>
+<Context
+    docBase='/home/mwood/NetBeansProjects/CAS-Explorer/target/CAS-Explorer-1.0-SNAPSHOT.war'>
+  <Environment description="Server Name"
+               name="cas/serverName"
+               override="false"
+               type="java.lang.String"
+               value="https://mhw.ulib.iupui.edu:8443"
+               />
+  <Environment description="CAS Login Url"
+               name="cas/AuthenticationFilter/casServerLoginUrl"
+               override="false"
+               type="java.lang.String"
+               value="https://cas.iu.edu/cas/login"/>
+  <Environment description="CAS Url Prefix"
+               name="cas/Cas20ProxyReceivingTicketValidationFilter/casServerUrlPrefix"
+               override="false"
+               type="java.lang.String"
+               value="https://cas.iu.edu/cas"/>
+</Context>
+
+(Adjust 'docBase' and the 'value's as needed!)

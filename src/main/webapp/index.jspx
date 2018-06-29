@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : index
+    Created on : Jul 20, 2017, 10:32:22 AM
+    Author     : mwood
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+          xmlns="http://www.w3c.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:directive.page import="org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter"/>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>CAS Explorer</title>
+    </head>
+    <body>
+        <h1>CAS Explorer</h1>
+        <h2>Your Service Ticket:</h2>
+
+        <dl>
+            <dt>Principal name</dt>
+            <dd><jsp:text>${pageContext.request.userPrincipal.name}</jsp:text></dd>
+        </dl>
+
+        <h3>Request attributes</h3>
+        <dl>
+            <c:forEach items="${pageContext.request.attributeNames}"
+                       var="attributeName">
+                <dt><c:out value="${attributeName}"/></dt>
+                <dd><c:out value="${pageContext.request.getAttribute(attributeName)}"/></dd>
+            </c:forEach>
+        </dl>
+
+        <h3>Request parameters</h3>
+        <dl>
+            <c:forEach items="${pageContext.request.parameterNames}"
+                       var="paramName">
+                <dt><c:out value="${paramName}"/></dt>
+                <dd><c:out value="${pageContext.request.getParameterValues(name)}"/></dd>
+            </c:forEach>
+        </dl>
+
+        <h3>Cookies</h3>
+        <dl>
+            <c:forEach items="${pageContext.request.getCookies()}"
+                       var="cookie">
+                <dt><c:out value="${cookie.name}"/></dt>
+                <dd><c:out value="${cookie.value}"/></dd>
+            </c:forEach>
+        </dl>
+
+        <h3>Session attributes</h3>
+        <dl>
+            <c:forEach items="${pageContext.session.attributeNames}"
+                       var="sessionAttributeName">
+                <dt><c:out value="${sessionAttributeName}"/></dt>
+                <dd><c:out value="${pageContext.session.getAttribute(sessionAttributeName)}"/></dd>
+            </c:forEach>
+        </dl>
+
+        <h3>Assertion</h3>
+        <c:set var="assertion"
+               value="${pageContext.session.getAttribute(Cas20ProxyReceivingTicketValidationFilter.CONST_CAS_ASSERTION)}"/>
+        <dl>
+            <dt>is valid</dt>
+            <dd><c:out value="${assertion.valid}"/></dd>
+            <dt>principal</dt>
+            <dd><c:out value="${assertion.principal}"/></dd>
+            <dt>authentication date</dt>
+            <dd><c:out value="${assertion.authenticationDate}"/></dd>
+            <dt>valid from</dt>
+            <dd><c:out value="${assertion.validFromDate}"/></dd>
+            <dt>valid until</dt>
+            <dd><c:out value="${assertion.validUntilDate}"/></dd>
+        </dl>
+
+        <h4>Assertion attributes</h4>
+        <c:choose>
+            <c:when test="${assertion.attributes.isEmpty()}">
+                <div>none</div>
+            </c:when>
+            <c:otherwise>
+                <dl>
+                    <c:forEach items="${assertion.attributes.keySet}"
+                               var='assertionAttributeName'>
+                        <dt><c:out value="${assertionAttributeName}"/></dt>
+                        <dd><c:out value="${assertion.attributes[assertionAttributeName]}"/></dd>
+                    </c:forEach>
+                </dl>
+            </c:otherwise>
+        </c:choose>
+
+    </body>
+
+</jsp:root>
